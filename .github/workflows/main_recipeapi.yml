@@ -23,6 +23,9 @@ jobs:
         with:
           dotnet-version: '9.x'
 
+      - name: Clean with dotnet
+        run: dotnet clean
+
       - name: Build with dotnet
         run: dotnet build --configuration Release
 
