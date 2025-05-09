@@ -1,3 +1,5 @@
+using RecipeAppApi.Middlewares;
+
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
 builder.CreateUmbracoBuilder()
@@ -11,6 +13,7 @@ WebApplication app = builder.Build();
 
 await app.BootUmbracoAsync();
 
+app.UseMiddleware<ApiKeyMiddleware>();
 
 app.UseUmbraco()
     .WithMiddleware(u =>
@@ -23,5 +26,6 @@ app.UseUmbraco()
         u.UseBackOfficeEndpoints();
         u.UseWebsiteEndpoints();
     });
+
 
 await app.RunAsync();
